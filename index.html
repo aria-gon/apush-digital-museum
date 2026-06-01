@@ -1,1 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of the Harlem Renaissance | Digital Exhibition</title>
+    <style>
+        
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #1a1d24;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent: #d4af37; /* Museum Gold */
+            --font-family: 'Georgia', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            border-bottom: 1px solid #2a2f3a;
+            padding-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .artifact-card {
+            background: var(--card-bg);
+            border: 1px solid #2a2f3a;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artifact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .artifact-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #050608;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .artifact-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .artifact-card:hover .artifact-image-wrapper img {
+            transform: scale(1.03);
+        }
+
+        .artifact-plaque {
+            padding: 1.5rem;
+            border-top: 1px dashed #2a2f3a;
+        }
+
+        .artifact-title {
+            font-size: 1.3rem;
+            font-weight: normal;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .artifact-meta {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .artifact-description {
+            font-family: sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #1a1d24;
+            border: 1px solid var(--accent);
+            padding: 2rem;
+            max-width: 650px;
+            width: 90%;
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: Georgia, serif;
+            text-align: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            border: 1px solid #2a2f3a;
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Art of the Harlem Renaissance</h1>
+        <p>Digital Museum</p>
+    </header>
+
+    <main class="gallery-grid">
+        
+        <!-- Artifact 1 -->
+        <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src="https://media.mutualart.com/Images//2020_10/14/10/103126587/d5173530-08ff-49bc-b5b0-94bfd074010f.Jpeg">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title">Rhapsody in Black</h2>
+                <div class="artifact-meta">Isac Friedlander | 1931</div>
+                <p class="artifact-description" hidden>Rhapsody in Black by Isac Friedlander depicts a lively club gathering common during the Harlem Renaissance and a crucial part of Black American culture. The term Rhapsody refers to a freeflowing musical piece with rapid shifts in tempo and mood showing the change in Black culture and showing their history and what they went through.
+
+                </p>
+            </div>
+            
+        </article>
+
+        <!-- Artifact 2 -->
+        <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src="https://www.arthistoryproject.com/site/assets/files/33219/archibald_motley-blues-1929-trivium-art-history-1.webp">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title">Blues</h2>
+                <div class="artifact-meta">Archibald Motley | 1929</div>
+                <p class="artifact-description" hidden>Blues by Archibald Motley portrays a tightly packed jazz club of Harlem Renaissance. During the Harlem Renaissance, jazz became a crucial part of everyday life. The jazz club portrayed is a place where people both black and white could unite and enjoy the same entertainment because of jazz.
+</p>
+            </div>
+        </article>
+
+        <!-- Artifact 3 -->
+        <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src="https://collectionapi.metmuseum.org/api/collection/v1/iiif/676458/1417711/restricted">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title">Let My People Go</h2>
+                <div class="artifact-meta">Aaron Douglas | c. 1935 - 1939</div>
+                <p class="artifact-description" hidden>Let my People go by Aaron Douglas represents the Old Testament of Moses leading the Israelites out of enslavement. African Americans used this as a symbolization of their plight as they migrated to the North to escape segregation prior to the Harlem Renaissance </p>
+            </div>
+        </article>
+
+        <!-- Artifact 4 -->
+        <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src="https://www.artic.edu/iiif/2/ec19d5f1-ae0f-5186-d421-4a53dca5fb90/full/843,/0/default.jpg">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title">Nightlife</h2>
+                <div class="artifact-meta">Archibald Motley | 1943</div>
+                <p class="artifact-description" hidden>	Nightlife by Archibald Motley depicts a crowded cabaret in Bronzeville in Chicago capturing the vibrant nightlife and energy in Black American communities. Motley’s use of shades of magenta and violet show the diversity of the black community and culture. This scene shows the origins of Black American culture with jazz and energy.
+</p>
+            </div>
+        </article>
+
+        <!-- Artifact 5 -->
+        <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src="https://cdn.saam.media/0TDBdXdA-CqGZRJ57YmGQZSsx9I/2600/0/center/cover/webp/https%3A%2F%2Fd3ec1vt3scx7rr.cloudfront.net%2Ffiles%2Fimages%2F2018-07%2Ffullsize_8.jpg">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title">Walking</h2>
+                <div class="artifact-meta">Charles Henry Alston | 1958</div>
+                <p class="artifact-description" hidden>	Walking by Charles Henry Alston was inspired by the Montgomery bus boycotts orchestrated by the actions of unrecognized women. The abstract techniques in the painting were used to evoke the resolute energy that sustained the protest. Alston stated that “It was a very definite walk–not going back, no hesitation” he captured this by creating a striking left-to-right transition that conveys a sense of spontaneous and purposeful movement</p>
+            </div>
+        </article>
+
+        <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+        
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+                <article class="artifact-card" onclick="openModal(this)">
+            <div class="artifact-image-wrapper">
+                <img src=" ">
+            </div>
+            <div class="artifact-plaque">
+                <h2 class="artifact-title"> </h2>
+                <div class="artifact-meta">  |  </div>
+                <p class="artifact-description" hidden>	</p>
+            </div>
+        </article>
+
+
+    </main>
+
+    <div id="artifactModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img id="modalImage" class="modal-image">
+        <h2 id="modalTitle"></h2>
+        <h3 id="modalMeta"></h3>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+
+    <script>
+      function openModal(card) {
+        const img = card.querySelector("img").src;
+        const title = card.querySelector(".artifact-title").innerText;
+        const meta = card.querySelector(".artifact-meta").innerText;
+        const desc = card.querySelector(".artifact-description").innerText.trim();
+
+        document.getElementById("modalImage").src = img;
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("modalMeta").innerText = meta;
+        document.getElementById("modalDescription").innerText = desc || "No description available.";
+
+        document.getElementById("artifactModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("artifactModal").style.display = "none";
+      }
+
+      window.onclick = function(e) {
+        const modal = document.getElementById("artifactModal");
+        if (e.target === modal) modal.style.display = "none";
+      }
+    </script>
+
+</body>
+</html>
 
