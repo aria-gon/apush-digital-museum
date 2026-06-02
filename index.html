@@ -276,16 +276,7 @@
             </div>
         </article>
 
-                <article class="artifact-card" onclick="openModal(this)">
-            <div class="artifact-image-wrapper">
-                <img src="https://uploads7.wikiart.org/00164/images/aaron-douglas/untitled2-2.png!Large.png">
-            </div>
-            <div class="artifact-plaque">
-                <h2 class="artifact-title">Go Down Death</h2>
-                <div class="artifact-meta">Aaron Douglas | 1934 </div>
-                <p class="artifact-description" hidden>	</p>
-            </div>
-        </article>
+
 
                 <article class="artifact-card" onclick="openModal(this)">
             <div class="artifact-image-wrapper">
@@ -299,16 +290,7 @@
             </div>
         </article>
 
-                <article class="artifact-card" onclick="openModal(this)">
-            <div class="artifact-image-wrapper">
-                <img src="https://uploads3.wikiart.org/00230/images/archibald-motley/saturday-night.jpeg!Large.jpeg">
-            </div>
-            <div class="artifact-plaque">
-                <h2 class="artifact-title">Saturday Night</h2>
-                <div class="artifact-meta">Archibald Motley| 1935 </div>
-                <p class="artifact-description" hidden></p>
-            </div>
-        </article>
+   
 
                 <article class="artifact-card" onclick="openModal(this)">
             <div class="artifact-image-wrapper">
@@ -392,7 +374,7 @@
         document.getElementById("modalImage").src = img;
         document.getElementById("modalTitle").innerText = title;
         document.getElementById("modalMeta").innerText = meta;
-        document.getElementById("modalDescription").innerText = desc || "No description available.";
+        document.getElementById("modalDescription").innerText = desc || "No description";
 
         document.getElementById("artifactModal").style.display = "flex";
       }
