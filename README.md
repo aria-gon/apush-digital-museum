@@ -1,1 +1,1 @@
-https://aria-gon.github.io/apush-website/
+https://aria-gon.github.io/apush-digital-museum/
